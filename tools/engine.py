@@ -33,6 +33,7 @@ def epoch(model, data_loader, device, optimizer, loss_fn, train):
 
 def train_epoch(model, data_loader, device, optimizer, loss_fn):
 
+    model.train()
     loss, acc = epoch(model, data_loader, device, optimizer, loss_fn, True)
     return loss, acc
 
@@ -41,5 +42,6 @@ def train_epoch(model, data_loader, device, optimizer, loss_fn):
 def val_epoch(model, data_loader, device, optimizer, loss_fn):
 
     with torch.no_grad():
+        model.eval()
         loss, acc = epoch(model, data_loader, device, optimizer, loss_fn, False)
         return loss, acc
