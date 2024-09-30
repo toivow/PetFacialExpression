@@ -33,7 +33,8 @@ class FacialExpressionDataset(Dataset):
 
     def __getitem__(self, index):
         image = Image.open(self.filelist[index])
-        image = datapoints.Image(image.convert("RGB")).to(self.device)
+        image.draft('RGB', (256, 256))
+        # image = datapoints.Image(image.convert("RGB")).to(self.device)
         image = self.preprocess(image)
 
         label = self.filelist[index].split("\\")[1]
